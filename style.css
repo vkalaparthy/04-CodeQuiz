@@ -1,0 +1,43 @@
+.column {
+    width: 50%;
+    float: left;
+}
+
+.leftcolumn {
+    text-align: left;
+}
+
+.rightcolumn {
+    text-align: right;
+}
+  
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.container {
+    text-align: center;
+}
+
+h4{
+    width: 400px;
+    display: inline-block;
+}
+
+button {
+    color: white;
+    background-color: purple;
+    font-size: large;
+}
+
+ol {
+    list-style: none;
+}
+
+.myform {
+    display: inline-block;
+    text-align: left;
+}
