@@ -59,11 +59,11 @@ function startTimer() {
 
 function sendMessage() {
     //Add the information to populate High Score
-    console.log ("Time is up!!!!");
+    console.log ("Time is up!");
     cont2.setAttribute("style", "display: none;");
     cont3.setAttribute("style", "display: block;");
     var newH1 = document.createElement("h1");
-    newH1.textContent = "All Done!!!!";
+    newH1.textContent = "All Done!!!";
     cont3.append(newH1);
     var pElement = document.createElement("h2");
     //pElement.innerHTML = "<p>Your Score is: "+ lastScore + "</p>";
@@ -123,7 +123,7 @@ cont2.addEventListener("click", function() {
         var userAnswer = event.target.textContent;
         console.log("user answer :"+userAnswer);
         if (userAnswer === listOfQuestions[questionCount].correctAnswer) {
-            console.log("Hurray!!!!! ");
+            console.log("Hurray!!!!!");
             lastScore++;
             displayRes();
         }
@@ -138,7 +138,7 @@ cont2.addEventListener("click", function() {
 });
 
 function displayRes() {
-    resDiv.innerHTML = "<hr/><p>Correct!!!!!</p>";
+    resDiv.innerHTML = "<hr/><p>Correct</p>";
     setTimeout(function(){
         resDiv.innerHTML = "<p></p>";
         console.log("res " + resDiv.innerHTML);
