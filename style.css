@@ -22,7 +22,8 @@
     text-align: center;
 }
 
-h4{
+h4,
+h2{
     width: 400px;
     display: inline-block;
 }
@@ -37,7 +38,13 @@ ol {
     list-style: none;
 }
 
+/*
 .myform {
+    display: inline-block;
+    text-align: left;
+}
+*/
+section {
     display: inline-block;
     text-align: left;
 }
