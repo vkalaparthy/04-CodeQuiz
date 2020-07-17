@@ -46,6 +46,7 @@ var questionCount = 0;
 
 var secondsLeft = 15;
 var lastScore = 0;
+var allDone = false;
 
 function init() {
     console.log("Initialize");
@@ -59,7 +60,7 @@ function startTimer() {
     secondsLeft--;
     timerEl.textContent = val + secondsLeft;
 
-    if(secondsLeft === 0) {
+    if(secondsLeft === 0 || allDone) {
       clearInterval(timerInterval);
       afterQuiz();
     }
@@ -79,24 +80,29 @@ sButton.addEventListener("click", function() {
 function startQuestions() {
     console.log("In conatiner 2");
     cont2.setAttribute("style", "display: block;");
-    populateQuestionForm();
+    populateQuestion();
 }
 
-function populateQuestionForm() {
-    h2El.textContent = listOfQuestions[questionCount].question;
-    console.log("question is: "+ h2El.textContent);
-    for (var i=0; i<4; i++) {
-        var lix = document.createElement("li");
-        var cButtonInfo;
-        lix.setAttribute("id", i);
-        console.log("added id to li : " + lix.getAttribute("id"));
-        cButtonInfo = listOfQuestions[questionCount].answers[i];
-        console.log("From the list : " + listOfQuestions[questionCount].answers[i]);
-        console.log("added to button : "+ cButtonInfo);
-        lix.innerHTML= "<button>" + cButtonInfo + "</button>";
-        console.log("lix : " + lix.innerHTML);
-        questionList.appendChild(lix);
-    };
+function populateQuestion() {
+    if (questionCount < listOfQuestions.length) {
+        h2El.textContent = listOfQuestions[questionCount].question;
+        console.log("question is: "+ h2El.textContent);
+        for (var i=0; i<4; i++) {
+            var lix = document.createElement("li");
+            var cButtonInfo;
+            lix.setAttribute("id", i);
+            console.log("added id to li : " + lix.getAttribute("id"));
+            cButtonInfo = listOfQuestions[questionCount].answers[i];
+            console.log("From the list : " + listOfQuestions[questionCount].answers[i]);
+            console.log("added to button : "+ cButtonInfo);
+            lix.innerHTML= "<button>" + cButtonInfo + "</button>";
+            console.log("lix : " + lix.innerHTML);
+            questionList.appendChild(lix);
+        };
+    } else {
+        console.log("Good job! All questions are over!");
+        allDone = true;
+    }
 };
 
 function clearContainer() {
@@ -127,7 +133,7 @@ cont2.addEventListener("click", function() {
         }
         questionCount++;
         clearContainer();
-        populateQuestionForm();
+        populateQuestion();
       }
 
 });
@@ -151,15 +157,22 @@ function afterQuiz() {
     cont3.setAttribute("style", "display: block;");
     var newH1 = document.createElement("h1");
     newH1.textContent = "All Done!!!";
-    cont3.append(newH1);
+    cont3.append (newH1);
     var h3Element = document.createElement("h3");
     //pElement.innerHTML = "<p>Your Score is: "+ lastScore + "</p>";
     h3Element.textContent = "Your Score is: "+lastScore;
     console.log ("what to display "+h3Element.textContent);
     cont3.appendChild(h3Element);
+    var iLabel = document.createElement("label")
+    iLabel.setAttribute("style", "type: text, id: fname; name: initials;");
+    iLabel.textContent = "Enter your initials:  ";
     var inputBox = document.createElement("input");
-    cont3.append("Enter your initials  ", inputBox);
-    
+    //cont3.append("Enter your initials  ", inputBox);
+    var smButton = document.createElement("button");
+    smButton.textContent = "Submit";
+    cont3.append (iLabel, inputBox);
+    // need to introduce some space between input box and button
+    cont3.appendChild (smButton);
 }
 
 init();
