@@ -1,10 +1,12 @@
+var highscoreDiv = document.getElementById("highscore");
 var timerEl = document.getElementById("timer");
 var sButton = document.getElementById("startbutton");
 var conts = document.getElementsByClassName("container");
-var questionList = document.querySelector("#option-list");
-var h2El = document.getElementById("question");
-var resDiv = document.getElementById("resDiv");
+var questionList = document.querySelector("#questionList");
+//var h2El = document.getElementById("question");
+var resDiv = document.getElementById("resultDiv");
 //var myForm = document.getElementById("myForm");
+//var initial = document.getElementById("initials");
 
 //var formH2 = h2El[0];
 
@@ -44,9 +46,13 @@ console.log(val);
 
 var questionCount = 0;
 
-var secondsLeft = 15;
+var secondsLeft = 40;
 var lastScore = 0;
 var allDone = false;
+var eachQuesTimeLeft = 10;
+
+var highscoreArray = [];
+
 
 function init() {
     console.log("Initialize");
@@ -76,33 +82,56 @@ sButton.addEventListener("click", function() {
     startQuestions();
 });
 
+function resetQueTimer() {
+    eachQuesTimeLeft = 10;
+    console.log("In resetQueTimer: " + eachQuesTimeLeft);
+};
+
+function startQueTimer() {
+    resetQueTimer();
+    var queInterval = setInterval (function() {
+      eachQuesTimeLeft--;
+  
+      if(eachQuesTimeLeft === 0 || allDone) {
+        clearInterval(queInterval);
+        if (!allDone) {
+            questionCount++;
+            populateQuestion();
+        }
+      }
+  
+    }, 1000);
+  }
 
 function startQuestions() {
     console.log("In conatiner 2");
     cont2.setAttribute("style", "display: block;");
     populateQuestion();
 }
-
+// ******  For each question, add a timer
 function populateQuestion() {
     if (questionCount < listOfQuestions.length) {
-        h2El.textContent = listOfQuestions[questionCount].question;
-        console.log("question is: "+ h2El.textContent);
+        //h2El.textContent = listOfQuestions[questionCount].question;
+        questionList.textContent = listOfQuestions[questionCount].question;
+
+        console.log("question is: "+ questionList.textContent);
         for (var i=0; i<4; i++) {
             var lix = document.createElement("li");
             var cButtonInfo;
             lix.setAttribute("id", i);
-            console.log("added id to li : " + lix.getAttribute("id"));
             cButtonInfo = listOfQuestions[questionCount].answers[i];
             console.log("From the list : " + listOfQuestions[questionCount].answers[i]);
             console.log("added to button : "+ cButtonInfo);
             lix.innerHTML= "<button>" + cButtonInfo + "</button>";
-            console.log("lix : " + lix.innerHTML);
+            //console.log("lix : " + lix.innerHTML);
             questionList.appendChild(lix);
         };
     } else {
         console.log("Good job! All questions are over!");
         allDone = true;
     }
+    startQueTimer();
+
 };
 
 function clearContainer() {
@@ -125,20 +154,20 @@ cont2.addEventListener("click", function() {
         if (parseInt(userAnswer.charAt(0)) === listOfQuestions[questionCount].correctAnswer) {
             console.log("Hurray!!!!!");
             lastScore++;
-            displayRes(1);
+            displayResult(1);
         }
         else {
-            displayRes(0);
+            displayResult(0);
             console.log ("Next time!!!!");
         }
         questionCount++;
         clearContainer();
         populateQuestion();
-      }
+    };
 
 });
 
-function displayRes(num) {
+function displayResult(num) {
     if (num === 1) {
         resDiv.innerHTML = "<hr/><p>Correct</p>";
     } else {
@@ -167,12 +196,52 @@ function afterQuiz() {
     iLabel.setAttribute("style", "type: text, id: fname; name: initials;");
     iLabel.textContent = "Enter your initials:  ";
     var inputBox = document.createElement("input");
+    inputBox.setAttribute("type", "text");
+    inputBox.setAttribute("id", "initials");
+    inputBox.setAttribute("name", "initials");
+    inputBox.setAttribute("placeholder", "abc");
     //cont3.append("Enter your initials  ", inputBox);
     var smButton = document.createElement("button");
     smButton.textContent = "Submit";
+    //var gotoPage = "href=http://google.com";
+    //smButton.setAttribute("onclick", gotoPage);
+    // add <button onclick="location.href = 'www.yoursite.com';" id="myButton" class="float-left submit-button" >Home</button>
+    //somekind of onclick to submit button
     cont3.append (iLabel, inputBox);
-    // need to introduce some space between input box and button
-    cont3.appendChild (smButton);
+    cont3.append (smButton);
 }
 
+cont3.addEventListener("click", function() {
+    // clicking submit should take the user to a different html page
+    var initials = document.getElementById("initials");
+    event.preventDefault();
+    if(event.target.matches("button")) {
+        console.log("Clicked");
+        var highscoreObj = {
+            initial: initials.value.trim(),
+            score: lastScore
+        };
+        
+        var storedHighscore = JSON.parse(localStorage.getItem("highscoreArray"));
+        if(storedHighscore !== null) {
+            highscoreArray = storedHighscore;
+            console.log(storedHighscore);
+        } 
+        highscoreArray.push(highscoreObj);
+        localStorage.setItem("highscoreArray", JSON.stringify(highscoreArray));
+        pageRedirect();
+    };
+});
+
+highscoreDiv.addEventListener("click", function() {
+    //event.preventDefault();
+    pageRedirect();
+});
+
+function pageRedirect() {
+    //window.location.replace("https://www.google.com/");
+    window.location.href = "highscore.html";
+};
+
 init();
+

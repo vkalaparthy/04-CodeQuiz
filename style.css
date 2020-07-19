@@ -1,6 +1,12 @@
+body {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-weight: bold;
+}
+
 .column {
     width: 50%;
     float: left;
+    color: purple;
 }
 
 .leftcolumn {
@@ -28,23 +34,45 @@ h2{
     display: inline-block;
 }
 
+#startbutton {
+    padding: 10px;
+}
+
 button {
     color: white;
     background-color: purple;
-    font-size: large;
+    font-size: medium;
+    margin: 8px;
+    padding: 2px 2px;
+    text-align: center;
+    border-radius: 8px;
+    
 }
 
 ol {
     list-style: none;
+    font-size: large;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/*
-.myform {
+section {
+    width: 400px;
     display: inline-block;
     text-align: left;
 }
-*/
-section {
-    display: inline-block;
-    text-align: left;
+
+/*  Highscore page related styling  */
+
+#hsTable {
+   width: 50% !important; 
+   margin-left: auto;
+   margin-right: auto;
+} 
+
+#gobackButton,
+#hsButton {
+    margin: 20px;
+    padding: 10px;
+    border-radius: 8px !important;
 }
