@@ -31,6 +31,10 @@ body {
     margin-right: auto;
 }
 
+.article {
+    padding: 20px;
+}
+
 h4,
 h2{
     width: 400px;
