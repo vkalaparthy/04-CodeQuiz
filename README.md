@@ -18,7 +18,7 @@ with 4 different answers and the timer starts (currently it is set for 100 secs)
 Each question has a time out of 10 seconds.
   - If the user Answers the questions correctly, he.she
 get 1 point and the next question
-  - If user answers wrongly, 2 seconds will be taken off of 
+  - If user answers wrongly, 10 seconds will be taken off of 
 the Quiz time
   - If user can't answer the question for 10 seconds, then
 the question will be chnaged.
