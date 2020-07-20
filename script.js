@@ -145,7 +145,7 @@ function populateQuestion() {
         timerVariable = setTimeout(function(){
             console.log ("10 sec over !!!");
             questionCount++;
-            clearTimeout(timerVariable);
+            clearTimeout(timerVariable); // clear the Question timeout
             displayResult(0);
             populateQuestion();
         }, 10000);
@@ -174,8 +174,7 @@ cont2.addEventListener("click", function() {
         else {
             displayResult(2);
             //console.log(secondsLeft);
-            secondsLeft--;
-            secondsLeft--;
+            secondsLeft = secondsLeft-10;
             //console.log(secondsLeft);
             //console.log ("Next time!!!!");
         }

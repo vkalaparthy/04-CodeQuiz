@@ -1,6 +1,15 @@
+
 body {
     font-family: Georgia, Times, "Times New Roman", serif;
     font-weight: bold;
+    margin: 10px;
+}
+
+.row {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 .column {
@@ -26,18 +35,17 @@ body {
 
 .container {
     text-align: center;
-    width: 450px;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .block {
+    text-align: center;
     padding: 20px;
-    margin: 20px;
 }
 
-h4,
-h2{
+h4 {
     display: inline-block;
 }
 
