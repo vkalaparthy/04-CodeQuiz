@@ -2,8 +2,7 @@
 Code Quiz 04-Homework
 
 This is a timed Quiz on HTML and Javascript fundamentals that any student can take 
-and store the high scores to check the progress and comapre with peers.
-AS A coding bootcamp student
+and store the high scores to check the progress and comapre with peers
 
 When user is ready to take the Quiz, they can start by clicking the 
 strat button.
