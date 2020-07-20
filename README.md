@@ -5,7 +5,7 @@ This is a timed Quiz on HTML and Javascript fundamentals that any student can ta
 and store the high scores to check the progress and comapre with peers
 
 When user is ready to take the Quiz, they can start by clicking the 
-strat button.
+"Start Quiz" button.
 
 <img src="images/Capture1.png" width="300">
 
