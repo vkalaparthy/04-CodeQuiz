@@ -134,7 +134,7 @@ function populateQuestion() {
                 cButtonInfo = listOfQuestions[questionCount].answers[i];
                 //console.log("From the list : " + listOfQuestions[questionCount].answers[i]);
                 //console.log("added to button : "+ cButtonInfo);
-                lix.innerHTML= "<button>" + cButtonInfo + "</button>";
+                lix.innerHTML= "<button class=\"mcqButton\">" + cButtonInfo + "</button>";
                 //console.log("lix : " + lix.innerHTML);
                 questionList.appendChild(lix);
             };
