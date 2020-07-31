@@ -1,4 +1,4 @@
-# 04-homework
+# 04-CodeQuiz
 Code Quiz 04-Homework
 
 This is a timed Quiz on HTML and Javascript fundamentals that any student can take 
