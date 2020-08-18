@@ -1,5 +1,5 @@
-# 04-CodeQuiz
-Code Quiz 04-Homework
+# Code Quiz
+## General Info
 
 This is a timed Quiz on HTML and Javascript fundamentals that any student can take 
 and store the high scores to check the progress and comapre with peers
